@@ -57,12 +57,13 @@ namespace IsoRimVEFPackZ
                 }
                 PipeRiserSource s = new PipeRiserSource(nets[i]);
                 sources[nets[i]] = s;
-                Api.AddRiserSource(s);
+                s.Register();
             }
         }
 
-        // The source drawing this net's risers (tests).
-        public static RiserSource SourceFor(PipeNetDef def) => def != null && sources.TryGetValue(def, out PipeRiserSource s) ? s : null;
+        // The ProjectZ RiserSource drawing this net's risers, as object (tests; this assembly names Api 3 types only inside
+        // method bodies, so it still loads on an older ProjectZ).
+        public static object SourceFor(PipeNetDef def) => def != null && sources.TryGetValue(def, out PipeRiserSource s) ? s.Handle : null;
 
         internal static void MarkDirty(Map map, PipeNetDef def)
         {
@@ -133,8 +134,10 @@ namespace IsoRimVEFPackZ
         }
     }
 
-    // One net kind's vertical links, drawn by ProjectZ: a pipe with a pipe of its net (same PipeNet) stacked over it.
-    internal sealed class PipeRiserSource : RiserSource
+    // One net kind's vertical links, drawn by ProjectZ: a pipe with a pipe of its net (same PipeNet) stacked over it. The
+    // ProjectZ RiserSource is made from this object's Collect and OverlayShown and kept as object (no Api 3 type in a field
+    // or base type: the game's startup type and field scans would trip over it on an older ProjectZ).
+    internal sealed class PipeRiserSource
     {
         // VEF's invisible texture (its hidden conduits and pipes): no piece on such an end, as the game draws no sprite.
         private const string HiddenTex = "UI/CSG/IConduit";
@@ -144,12 +147,27 @@ namespace IsoRimVEFPackZ
         private bool materialsTried;
         private readonly Dictionary<ThingDef, Color32> colours = new Dictionary<ThingDef, Color32>();
 
+        public object Handle { get; private set; }
+
         public PipeRiserSource(PipeNetDef def)
         {
             this.def = def;
         }
 
-        public override void Collect(Map map, List<RiserLink> into)
+        // Api 3 only (Setup.Run after the version check).
+        internal void Register()
+        {
+            RiserSource s = new RiserSource(Collect, OverlayShown);
+            Handle = s;
+            Api.AddRiserSource(s);
+        }
+
+        internal void MarkDirty(Map map)
+        {
+            (Handle as RiserSource)?.MarkDirty(map);
+        }
+
+        private void Collect(Map map, List<RiserLink> into)
         {
             PipeNetManager manager = CachedPipeNetManager.GetFor(map);
             if (manager == null)
@@ -193,7 +211,7 @@ namespace IsoRimVEFPackZ
             }
         }
 
-        public override bool OverlayShown(Map map) => PipeRisers.shownDef == def && PipeRisers.shownFrame + 1 >= Time.frameCount;
+        private bool OverlayShown(Map map) => PipeRisers.shownDef == def && PipeRisers.shownFrame + 1 >= Time.frameCount;
 
         private static bool Hidden(ThingDef d) => d.drawerType == DrawerType.None || d.graphicData?.texPath == HiddenTex;
 
