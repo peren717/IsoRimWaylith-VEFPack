@@ -12,8 +12,10 @@ namespace IsoRimVEFPackZ
     //  - Drawing (PipeRiserSource, one per PipeNetDef, ProjectZ.Api.AddRiserSource): each pipe with a pipe of its net over
     //    it is drawn by ProjectZ like a power riser, in the pipe's colour, with the net's own overlay tile while that net's
     //    overlay is shown.
-    // VEF is reached through its public types; its one private method (PipeNetManager.NeighbourThingsCardinal) by name:
-    // missing, the floors stay apart (logged once).
+    //  - Beams (Beams.cs): VEF's expandable beam projectiles (VWE's flamethrower) fired between floors start, draw and
+    //    damage on the projectile's floor, as ProjectZ flies the shot, instead of across the flat map.
+    // VEF is reached through its public types; its one private method (PipeNetManager.NeighbourThingsCardinal) and the beam
+    // class by name: missing, that part is left as VEF does it (logged once).
     [StaticConstructorOnStartup]
     public static class PackZ
     {
