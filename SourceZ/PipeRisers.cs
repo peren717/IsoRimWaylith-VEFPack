@@ -178,12 +178,13 @@ namespace IsoRimVEFPackZ
                     {
                         continue;   // drawn only where VEF's nets really join (never disagrees with them)
                     }
+                    bool lowDrawn = !Hidden(p.def), highDrawn = !Hidden(top.parent.def);
                     into.Add(new RiserLink
                     {
                         low = p.Position,
-                        colour = ColourOf(p),
-                        lowDrawn = !Hidden(p.def),
-                        highDrawn = !Hidden(top.parent.def),
+                        colour = ColourOf(lowDrawn || !highDrawn ? p : top.parent),   // a visible end's pipe
+                        lowDrawn = lowDrawn,
+                        highDrawn = highDrawn,
                         overlay = true,   // VEF's resource overlay shows every pipe, whoever owns it
                         overlayLine = line,
                         overlayEnd = end,
