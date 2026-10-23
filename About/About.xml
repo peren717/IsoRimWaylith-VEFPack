@@ -17,11 +17,6 @@
       <displayName>Vanilla Expanded Framework</displayName>
       <steamWorkshopUrl>steam://url/CommunityFilePage/2023507013</steamWorkshopUrl>
     </li>
-    <li>
-      <packageId>Peren.IsoRimProjectZ</packageId>
-      <displayName>IsoRimZ</displayName>
-      <steamWorkshopUrl>steam://url/CommunityFilePage/3824503834</steamWorkshopUrl>
-    </li>
   </modDependencies>
   <loadAfter>
     <li>Peren.IsoRim17</li>
@@ -33,12 +28,12 @@ A pipe connects to a pipe of the same network directly above or below it, like p
 Works for every VEF pipe network: chemfuel, oxygen, astrofuel, nutrient paste and others.
 In the 3D view, a vertical pipe piece links the floors, also in the pipe overlay.
 VEF beam weapons such as the flamethrower fire from the muzzle in the 3D view, also between floors.
-Needs IsoRimZ (Api 3 or newer).
+Beams work with IsoRim alone; pipes and fixes between floors need IsoRimZ (Api 3 or newer).
 
 让 Vanilla Expanded Framework 的管道网络在 IsoRimZ 的楼层之间连通。
 管道和正上方或正下方同一网络的管道相连，与电线相同。
 适用于所有 VEF 管道网络：化学燃料、氧气、星际燃料、营养膏等。
 3D 视角里，楼层之间显示一段竖直的管道，管道叠加层里也有。
 火焰喷射器等 VEF 光束武器在 3D 视角里从枪口射出，跨楼层时也一样。
-需要 IsoRimZ（Api 3 或更新）。</description>
+光束只需 IsoRim；跨楼层的管道和修复需要 IsoRimZ（Api 3 或更新）。</description>
 </ModMetaData>
