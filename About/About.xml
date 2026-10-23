@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>IsoRim Waylith - VE Framework Pack</name>
+  <author>Peren.</author>
+  <packageId>Peren.IsoRimWaylith.VEFPack</packageId>
+  <supportedVersions>
+    <li>1.7</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>Peren.IsoRim17</packageId>
+      <displayName>IsoRim Waylith</displayName>
+      <downloadUrl>https://github.com/peren717/IsoRim-1.7</downloadUrl>
+    </li>
+    <li>
+      <packageId>OskarPotocki.VanillaFactionsExpanded.Core</packageId>
+      <displayName>Vanilla Expanded Framework</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2023507013</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>Peren.IsoRim17</li>
+    <li>OskarPotocki.VanillaFactionsExpanded.Core</li>
+    <li>Peren.IsoRimProjectZ</li>
+  </loadAfter>
+  <description>Vanilla Expanded Framework pipe networks across IsoRimZ floors.
+A pipe connects to a pipe of the same network directly above or below it, like power conduits.
+Works for every VEF pipe network: chemfuel, oxygen, astrofuel, nutrient paste and others.
+In the 3D view, a vertical pipe piece links the floors, also in the pipe overlay.
+Needs IsoRimZ with Api 3; without IsoRimZ the pack does nothing.
+
+让 Vanilla Expanded Framework 的管道网络在 IsoRimZ 的楼层之间连通。
+管道和正上方或正下方同一网络的管道相连，与电线相同。
+适用于所有 VEF 管道网络：化学燃料、氧气、星际燃料、营养膏等。
+3D 视角里，楼层之间显示一段竖直的管道，管道叠加层里也有。
+需要支持 Api 3 的 IsoRimZ；没有 IsoRimZ 时本包不起作用。</description>
+</ModMetaData>
