@@ -5,6 +5,7 @@
 - A pipe connects to a pipe of the same network directly above or below it, like power conduits.
 - Works for every VEF pipe network (chemfuel, oxygen, astrofuel, nutrient paste and others).
 - In the 3D view a vertical pipe piece links the floors, also in the pipe overlay.
+- VEF beam weapons (the VWE flamethrower and others) come out of the muzzle in the 3D view, and burn only on the target's floor between floors.
 
 Requires IsoRim Waylith, Vanilla Expanded Framework and IsoRimZ with Api 3 (without IsoRimZ the pack does nothing). Load after all three.
 
