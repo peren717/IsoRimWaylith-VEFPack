@@ -7,6 +7,7 @@ using Verse;
 namespace IsoRimVEFPack
 {
     // The pack's IsoRim part (needs IsoRim Api 20; older: nothing, logged once). Works with or without IsoRimZ.
+    // Beams (below) and VEF things drawn as IsoRim models (Models3D.cs).
     [StaticConstructorOnStartup]
     public static class PackMain
     {
@@ -21,7 +22,9 @@ namespace IsoRimVEFPack
                     Log.Message(Tag + "IsoRim Waylith has no drawn-space API (Api 20): VEF beams keep VEF's flat look in the 3D view.");
                     return;
                 }
-                new Harmony("peren.isorimwaylith.vefpack").PatchAll(typeof(PackMain).Assembly);
+                Harmony h = new Harmony("peren.isorimwaylith.vefpack");
+                h.PatchAll(typeof(PackMain).Assembly);
+                Models3D.Run(h);   // VEF things under IsoRim models: pipe storage bars, the extended biosculpter pod
             }
             catch (Exception e)
             {
